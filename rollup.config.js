@@ -8,6 +8,7 @@ import nodeResolve  from 'rollup-plugin-node-resolve'
 import commonjs     from 'rollup-plugin-commonjs'
 import nodeBuiltins from 'rollup-plugin-node-builtins'
 import nodeGlobals  from 'rollup-plugin-node-globals'
+import postprocess  from 'rollup-plugin-postprocess'
 
 // import {terser}     from 'rollup-plugin-terser'
 // import {sizeSnapshot} from "rollup-plugin-size-snapshot"
@@ -23,7 +24,6 @@ const base = {
   plugins: [
     importAlias({
       Paths: {
-        "opencv_js": __dirname+"/src/libs/opencv_js.js",
         "opencv": __dirname+"/src/libs/opencv.js",
         "libs": "./src/libs"
       },
@@ -36,7 +36,7 @@ const base = {
 
     // CommonJSモジュールをES6に変換
     commonjs({
-      // exclude: ['**/*.worker.js'],
+      exclude: ["**/*.worker.js"],
       extensions: [ '.js' ],
     }),
 
@@ -86,7 +86,7 @@ const base = {
     }),
 
     // sizeSnapshot(),
-
+ 
     // terser(),
   ],
 }
