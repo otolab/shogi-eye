@@ -9,6 +9,7 @@ import commonjs     from 'rollup-plugin-commonjs'
 import nodeBuiltins from 'rollup-plugin-node-builtins'
 import nodeGlobals  from 'rollup-plugin-node-globals'
 import postprocess  from 'rollup-plugin-postprocess'
+import css          from '@henrikjoreteg/rollup-plugin-css'
 
 // import {terser}     from 'rollup-plugin-terser'
 // import {sizeSnapshot} from "rollup-plugin-size-snapshot"
@@ -55,6 +56,10 @@ const base = {
           replacement: false
         })
       ],
+    }),
+
+    css({
+      output: './public/assets/s.css',
     }),
 
     // babel({
