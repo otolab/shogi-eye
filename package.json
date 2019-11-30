@@ -24,16 +24,18 @@
     "url": "https://github.com/otolab/toaru-project/issues"
   },
   "homepage": "https://github.com/otolab/toaru-project#readme",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "7.4.5",
     "@babel/preset-env": "7.4.5",
     "@henrikjoreteg/rollup-plugin-css": "2.0.0",
+    "@ljharb/eslint-config": "15.0.2",
     "babel-plugin-transform-es2015-destructuring": "6.23.0",
     "element-ui": "2.11.1",
     "eslint": "5.16.0",
+    "eslint-config-google": "0.14.0",
     "eslint-config-vue": "2.0.2",
+    "eslint-plugin-html": "6.0.0",
     "eslint-plugin-vue": "5.2.2",
     "http-server": "0.11.1",
     "postcss": "7.0.16",
