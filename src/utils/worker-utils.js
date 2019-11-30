@@ -26,8 +26,8 @@ export function drawImage(tag, img, conv) {
 }
 
 
-export function log(args) {
-  self.postMessage({ type: 'log', args: Array.from(arguments) });
+export function log(...args) {
+  self.postMessage({ type: 'log', args });
 }
 
 

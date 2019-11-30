@@ -85,7 +85,7 @@ function _solveQuations(a) {
     /*pivotがiと違えば、行の入れ替え*/
     if (pivot != i) {  
       const b = [[]];
-      for (j=0; j<3; j++) {
+      for (let j=0; j<3; j++) {
         b[0][j] = a[i][j];        
         a[i][j] = a[pivot][j];
         a[pivot][j] = b[0][j];
@@ -147,7 +147,7 @@ function _hypothesisStage(points, tryCount, threshold) {
     const samplePointA = points[rand1];
     const samplePointB = points[rand2];
     
-      //pointA.x *a + 1*b=pointA.y
+    //pointA.x *a + 1*b=pointA.y
     a[0][0] = samplePointA.x;
     a[0][1] = 1;
     a[0][2] = samplePointA.y;
@@ -156,7 +156,7 @@ function _hypothesisStage(points, tryCount, threshold) {
     a[1][1] = 1;
     a[1][2] = samplePointB.y;
 
-    //連立方程式を解く　　solve equations
+    //連立方程式を解く solve equations
     const answers = _solveQuations(a);
 
     let localScore=0;
@@ -188,7 +188,6 @@ function _hypothesisStage(points, tryCount, threshold) {
 
 //from http://hooktail.sub.jp/computPhys/least-square/index.html
 function leastSquare(points, num){
-   i;
   let sum_xy = 0, sum_x = 0, sum_y = 0, sum_x2 = 0;
 
   for (let i=0; i<num; i++){
@@ -198,8 +197,8 @@ function leastSquare(points, num){
     sum_x2 += Math.pow(points[i].x, 2);
   }
 
-  a = (num * sum_xy - sum_x * sum_y) / (num * sum_x2 - Math.pow(sum_x, 2));
-  b = (sum_x2 * sum_y - sum_xy * sum_x) / (num * sum_x2 - Math.pow(sum_x, 2));
+  const a = (num * sum_xy - sum_x * sum_y) / (num * sum_x2 - Math.pow(sum_x, 2));
+  const b = (sum_x2 * sum_y - sum_xy * sum_x) / (num * sum_x2 - Math.pow(sum_x, 2));
 
   return {a, b}
 }
@@ -285,15 +284,15 @@ function calcVanishingPoint(rho1, theta1, rho2, theta2) {
   l2.b = l2y0;
   l2.c = - (l2x0*l2x0) - (l2y0*l2y0);
 
-  const {t, x, y} = findCross(l1, l2);
-  if (t) console.log("bad\n");
+  const {x, y} = findCross(l1, l2);
+  // if (t) console.log("bad\n");
   return {x: -x, y};
 }
 
 
 function _detectVanishingPoint(lines, params) {
   const rtLines = convLinesToRhoTheta(lines)
-  const {holizonalLines, verticalLines} = classifyAndScale(rtLines)
+  const {holizonalLines} = classifyAndScale(rtLines)
 
   const {a, b, probA, probB} = RANSAC_y_Ax_B(holizonalLines, params)
   const line_lim = 400

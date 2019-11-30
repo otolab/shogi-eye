@@ -7,11 +7,11 @@
       <el-aside>
 
         <el-form>
-          <label>device</label>
-
-          <el-select v-model="selectedDeviceId" placeholder="select...">
-            <el-option v-for="device in devices" :label="device.label || device.deviceId || 'no-name'" :value="device.deviceId"></el-option>
-          </el-select>
+          <el-form-item label="device">
+            <el-select v-model="selectedDeviceId" placeholder="select...">
+              <el-option v-for="device in devices" :label="device.label || device.deviceId || 'no-name'" :value="device.deviceId" :key="device.deviceId"></el-option>
+            </el-select>
+          </el-form-item>
 
           <el-form-item label="threshold">
             <el-input-number type="number" v-model="params.hough.threshold"></el-input-number>
@@ -63,15 +63,15 @@
           </el-col>
 
           <el-col :span="8">
-            <el-card :body-style="{padding:'0px'}"><canvas id="canny2"></canvas></el-card>
-          </el-col>
-
-          <el-col :span="8">
             <el-card :body-style="{padding:'0px'}"><canvas id="holizonal" width="500" height="500"></canvas></el-card>
           </el-col>
 
           <el-col :span="8">
             <el-card :body-style="{padding:'0px'}"><canvas id="vertical" width="500" height="500"></canvas></el-card>
+          </el-col>
+
+          <el-col :span="8">
+            <el-card :body-style="{padding:'0px'}"><canvas id="canny2"></canvas></el-card>
           </el-col>
 
           <el-col :span="8">

@@ -12,7 +12,7 @@ Vue.use(ElementUI)
 // const PROCESSING_RESOLUTION_WIDTH = 120;
 const PROCESSING_RESOLUTION_WIDTH = 240;
 
-window.worker = null;
+let worker = null;
 let app = null
 
 

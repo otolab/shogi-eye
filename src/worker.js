@@ -27,8 +27,8 @@ const _params = {
 // http://imagingsolution.blog107.fc2.com/blog-entry-137.html
 function calcCrossPoint(P1, P3, P2, P4) {
   const C = [];
-  S1 = ((P4.x - P2.x) * (P1.y - P2.y) - (P4.y - P2.y) * (P1.x - P2.x)) / 2
-  S2 = ((P4.x - P2.x) * (P2.y - P3.y) - (P4.y - P2.y) * (P2.x - P3.x)) / 2
+  const S1 = ((P4.x - P2.x) * (P1.y - P2.y) - (P4.y - P2.y) * (P1.x - P2.x)) / 2
+  const S2 = ((P4.x - P2.x) * (P2.y - P3.y) - (P4.y - P2.y) * (P2.x - P3.x)) / 2
   C[0] = P1.x + (P3.x - P1.x) * S1 / (S1 + S2)
   C[1] = P1.y + (P3.y - P1.y) * S1 / (S1 + S2)
   return C;
