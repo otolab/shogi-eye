@@ -111,7 +111,7 @@
           },
           ransac: {
             tryCount: 100,
-            hypothesisThreshold: 10,
+            hypothesisThreshold: 50,
             verificationThreshold: 30
           }
         },
