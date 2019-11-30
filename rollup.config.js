@@ -31,8 +31,8 @@ const base = {
     }),
 
     webWorkerLoader({
-      inline: false,
-      loadPath: '/assets/'
+      inline: true,
+      // loadPath: '/assets/'
     }),
 
     // CommonJSモジュールをES6に変換
@@ -59,7 +59,7 @@ const base = {
     }),
 
     css({
-      output: './public/assets/s.css',
+      output: './docs/demo/assets/s.css',
     }),
 
     // babel({
@@ -100,7 +100,7 @@ const base = {
 export default Object.assign({
     input: `./src/index.js`,
     output: {
-      file: `./public/assets/index.js`,
+      file: `./docs/demo/assets/index.js`,
       format: 'es',
       sourcemap: false,
     }
