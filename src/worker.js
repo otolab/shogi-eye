@@ -1,6 +1,7 @@
 import cv from 'opencv'
 import {detectVanishingPoint} from './vanishing-point-detector/index'
 import {drawImage, log} from './utils/worker-utils'
+import LSD from './libs/lsd';
 
 const CV_PI = Math.PI
 
@@ -118,7 +119,8 @@ async function init() {
 
   self.addEventListener('message', ({ data }) => {
     if (data.type === 'frame') {
-      const lines = detectLines(data.imageData, _params.hough)
+      // const lines = detectLines(data.imageData, _params.hough)
+      const lines = detectLinesLSD(data.imageData)
 
       const {
         holizonalLines,
@@ -156,6 +158,36 @@ async function init() {
   });
 
   self.postMessage({ type: 'request' });
+}
+
+
+function detectLinesLSD(imageData) {
+  const detector = new LSD(0, 0.8);
+  detector.angles = new Float64Array()
+  const lines = detector.detect(imageData);
+
+  const img = cv.matFromImageData(imageData)
+  const imgGray = new cv.Mat()
+  const imgCanny = new cv.Mat()
+  cv.cvtColor(img, imgGray, cv.COLOR_RGBA2GRAY, 0)
+  cv.Canny(imgGray, imgCanny, 50, 150)
+
+  drawImage('canny', imgCanny, cv.COLOR_GRAY2RGBA)
+  drawImage('canny2', imgCanny, cv.COLOR_GRAY2RGBA)
+
+  img.delete()
+  imgGray.delete()
+  imgCanny.delete()
+
+  return lines.map((v) => {
+    if (v.x1 < v.x2) {
+      return [v.x1, v.y1, v.x2, v.y2]
+    }
+    else {
+      return [v.x2, v.y2, v.x1, v.y1]
+    }
+  })
+
 }
 
 
