@@ -37,8 +37,13 @@
       },
       stream(stream) {
         const video = this._video
-        video.srcObject = stream
-        video.play()
+        try {
+          video.srcObject = stream
+          video.play()
+        }
+        catch (err) {
+          console.log(err)
+        }
       },
     },
     methods: {
