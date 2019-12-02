@@ -10,14 +10,19 @@ class DeviceStore {
   }
 
   async init() {
+    await this.getDevices()
+  }
+
+  async getDevices() {
     const devices = await navigator.mediaDevices.enumerateDevices()
     this.state.devices = devices.filter((d) => d.kind === 'videoinput')
   }
 
   async setDeviceId(deviceId) {
     this.state.stream = await this._getNewStream(deviceId)
-
     if (!this.state.stream) return;
+
+    await this.getDevices()
 
     const settings = this.state.stream.getVideoTracks()[0].getSettings()
     const {width, height} = settings

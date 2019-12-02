@@ -24,6 +24,7 @@ function initWorker() {
   log('initWorker');
 
   worker = new DetectFaceWorker()
+  window.worker = worker // umm.
   worker.addEventListener('message', ({ data }) => {
     switch (data.type) {
       case 'request':
